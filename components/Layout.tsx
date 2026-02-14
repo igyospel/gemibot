@@ -63,12 +63,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect
             ) : (
               <button
                 onClick={onConnect}
-                className="group relative flex items-center gap-2 bg-white text-black px-5 py-2 rounded-full font-bold text-sm shadow-lg shadow-white/5 overflow-hidden hover:scale-105 transition-transform duration-300"
+                className="group relative flex items-center gap-2 bg-white text-black px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-xs md:text-sm shadow-lg shadow-white/5 overflow-hidden hover:scale-105 transition-transform duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent translate-x-[-100%] group-hover:animate-shimmer-slide z-10"></div>
-                <span className="relative z-20 flex items-center gap-2">
-                  Connect Wallet
-                  <ArrowRight className="h-4 w-4" />
+                <span className="relative z-20 flex items-center gap-1 md:gap-2">
+                  Connect
+                  <span className="hidden sm:inline">Wallet</span>
+                  <ArrowRight className="h-3 w-3 md:h-4 md:w-4" />
                 </span>
               </button>
             )}

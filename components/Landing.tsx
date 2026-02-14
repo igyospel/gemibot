@@ -37,7 +37,7 @@ export const Landing: React.FC<LandingProps> = ({ onConnect }) => {
               {/* ADVANCED PRIMARY BUTTON - LIQUID NEON STYLE */}
               <button
                 onClick={onConnect}
-                className="group relative px-10 py-5 rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,229,153,0.3)] hover:shadow-[0_0_50px_rgba(0,229,153,0.6)] hover:scale-105 transition-all duration-300"
+                className="group relative px-6 py-4 md:px-10 md:py-5 rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,229,153,0.3)] hover:shadow-[0_0_50px_rgba(0,229,153,0.6)] hover:scale-105 transition-all duration-300 w-full sm:w-auto"
               >
                 {/* Animated Gradient Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-poly-accent via-poly-secondary to-poly-accent bg-[length:200%_100%] animate-gradient-xy"></div>
@@ -49,19 +49,19 @@ export const Landing: React.FC<LandingProps> = ({ onConnect }) => {
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:animate-shimmer-slide skew-x-12"></div>
 
                 {/* Button Content */}
-                <div className="relative z-10 flex items-center gap-3">
-                  <span className="text-lg font-bold text-black tracking-wide">Start Copying</span>
+                <div className="relative z-10 flex items-center justify-center gap-3">
+                  <span className="text-base md:text-lg font-bold text-black tracking-wide">Start Copying</span>
                   <div className="bg-black/10 rounded-full p-1 group-hover:translate-x-1 transition-transform">
-                    <ChevronRight className="h-5 w-5 text-black stroke-[3px]" />
+                    <ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-black stroke-[3px]" />
                   </div>
                 </div>
               </button>
 
               {/* ADVANCED SECONDARY BUTTON - GLASS STYLE */}
-              <button className="relative px-8 py-5 rounded-full font-semibold overflow-hidden group border border-white/10 hover:border-white/30 transition-colors">
+              <button className="relative px-6 py-4 md:px-8 md:py-5 rounded-full font-semibold overflow-hidden group border border-white/10 hover:border-white/30 transition-colors w-full sm:w-auto">
                 <div className="absolute inset-0 bg-white/5 group-hover:bg-white/10 transition-colors"></div>
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shimmer-slide"></div>
-                <span className="relative text-white/90 group-hover:text-white transition-colors">View Leaderboard</span>
+                <span className="relative text-white/90 group-hover:text-white transition-colors text-sm md:text-base">View Leaderboard</span>
               </button>
             </div>
 
