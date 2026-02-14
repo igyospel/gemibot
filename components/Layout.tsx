@@ -9,6 +9,8 @@ interface LayoutProps {
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect, onLogout }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
       {/* Background ambient light */}
@@ -21,7 +23,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect
 
       <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4">
         <div className="glass-panel rounded-full px-6 h-16 flex items-center justify-between shadow-2xl shadow-black/50">
-          
+
           {/* Logo */}
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-poly-accent/10 group-hover:bg-poly-accent/20 transition-colors">
@@ -32,7 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect
               Poly<span className="text-poly-accent">Bot</span>
             </span>
           </div>
-          
+
           {/* Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {['Markets', 'Strategies', 'Ecosystem', 'Docs'].map((item) => (
@@ -50,7 +52,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect
                   <span className="text-[10px] uppercase tracking-wider text-poly-accent font-bold mb-1">Live</span>
                   <span className="text-xs font-mono text-white/80">0x...8aF2</span>
                 </div>
-                <button 
+                <button
                   onClick={onLogout}
                   className="p-2 text-poly-muted hover:text-red-400 transition-colors hover:bg-red-500/10 rounded-full"
                   title="Disconnect"
@@ -59,7 +61,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect
                 </button>
               </div>
             ) : (
-              <button 
+              <button
                 onClick={onConnect}
                 className="group relative flex items-center gap-2 bg-white text-black px-5 py-2 rounded-full font-bold text-sm shadow-lg shadow-white/5 overflow-hidden hover:scale-105 transition-transform duration-300"
               >
@@ -70,13 +72,50 @@ export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect
                 </span>
               </button>
             )}
-            <button className="md:hidden text-white p-2 rounded-full hover:bg-white/10">
-              <Menu className="h-5 w-5" />
+            <button
+              className="md:hidden text-white p-2 rounded-full hover:bg-white/10 z-50 relative"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <LogOut className="h-5 w-5 rotate-180" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden animate-[fadeIn_0.2s_ease-out] flex flex-col items-center justify-center space-y-8 p-8">
+            <nav className="flex flex-col items-center gap-6 w-full">
+              {['Markets', 'Strategies', 'Ecosystem', 'Docs'].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-2xl font-bold text-white hover:text-poly-accent transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+            <div className="w-full h-[1px] bg-white/10"></div>
+            {isConnected ? (
+              <button
+                onClick={() => { onLogout(); setIsMobileMenuOpen(false); }}
+                className="w-full py-4 rounded-xl bg-red-500/10 text-red-500 font-bold border border-red-500/20"
+              >
+                Disconnect Wallet
+              </button>
+            ) : (
+              <button
+                onClick={() => { onConnect(); setIsMobileMenuOpen(false); }}
+                className="w-full py-4 rounded-xl bg-poly-accent text-black font-bold shadow-[0_0_20px_rgba(0,229,153,0.3)]"
+              >
+                Connect Wallet
+              </button>
+            )}
+          </div>
+        )}
       </header>
-      
+
       <main className="flex-grow pt-32 pb-12 px-4 sm:px-6">
         {children}
       </main>
