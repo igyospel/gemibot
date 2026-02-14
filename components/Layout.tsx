@@ -73,8 +73,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, isConnected, onConnect
                 </span>
               </button>
             )}
+            {/* Mobile Menu Toggle - Ensure Z-Index is high enough */}
             <button
-              className="md:hidden text-white p-2 rounded-full hover:bg-white/10 z-50 relative"
+              className="md:hidden text-white p-2 rounded-full hover:bg-white/10 relative z-[60]"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <LogOut className="h-5 w-5 rotate-180" /> : <Menu className="h-5 w-5" />}
